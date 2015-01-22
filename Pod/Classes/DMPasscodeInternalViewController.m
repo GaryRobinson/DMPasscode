@@ -82,6 +82,22 @@
     [_input becomeFirstResponder];
 }
 
+- (void)viewDidLayoutSubviews
+{
+    _instructions.frame = CGRectMake(0, 85, self.view.frame.size.width, 30);
+    _error.frame = CGRectMake(self.view.frame.size.width / 2 - 78, 190, 156, 30);
+    
+    CGFloat y_padding = 140;
+    CGFloat itemWidth = 24;
+    int space = 20;
+    CGFloat x_padding = (self.view.bounds.size.width - (itemWidth * 4) - (space * 3)) / 2;
+    
+    for (int i = 0; i < 4; i++) {
+        DMPasscodeInternalField* field = _textFields[i];
+        field.frame = CGRectMake(x_padding + ((itemWidth + space) * i), y_padding, itemWidth, itemWidth);
+    }
+}
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSUInteger oldLength = [textField.text length];
     NSUInteger replacementLength = [string length];

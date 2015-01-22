@@ -135,6 +135,8 @@ static NSBundle* bundle;
     _count = 0;
     _passcodeViewController = [[DMPasscodeInternalViewController alloc] initWithDelegate:self config:_config];
     DMPasscodeInternalNavigationController* nc = [[DMPasscodeInternalNavigationController alloc] initWithRootViewController:_passcodeViewController];
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        nc.modalPresentationStyle = UIModalPresentationFormSheet;
     [viewController presentViewController:nc animated:YES completion:nil];
     if (_mode == 0) {
         [_passcodeViewController setInstructions:NSLocalizedString(@"dmpasscode_enter_new_code", nil)];
